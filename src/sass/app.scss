@@ -1,0 +1,10 @@
+html, body{
+    background: #020202;
+    color: #E3C950;
+    font-family: 'VT323', sans-serif;
+    font-size: 24px;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
