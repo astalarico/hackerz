@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { faker }  from '@faker-js/faker';
+import { faker } from "@faker-js/faker";
 
-const rows = 16;
+const rows =9;
 
 // create function that generates a random number between two values
 const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
@@ -13,18 +13,17 @@ const generateRandonHexValue = () => {
         hexValue += hexValues[random(0, 15)];
     }
     return hexValue;
-}
+};
 const generateSequence = () => {
     const sequence = [];
     const characters = "!@#$%^&*()_+{}|:<>?`-=[]\\;',./";
 
     for (let i = 0; i < 12; i++) {
-        sequence.push(characters[ random(0, characters.length - 1)]);
+        sequence.push(characters[random(0, characters.length - 1)]);
     }
 
     return sequence.join("");
-
-}
+};
 console.log(generateRandonHexValue(), generateSequence());
 
 function Game() {
@@ -33,7 +32,7 @@ function Game() {
     const [rightRows, setRightRows] = useState(16);
 
     useEffect(() => {
-        for( let i = 0; i < rows; i++) {
+        for (let i = 0; i < rows; i++) {
             const row = document.createElement("div");
             row.classList.add("flex");
             row.id = `row-${i}`;
@@ -42,10 +41,24 @@ function Game() {
                     <p class='tracking-wide'>${generateRandonHexValue()}</p>
                 </div>
                 <div class="row-right ">
-                    <p class="code hover:cursor-pointer">${generateSequence()}</p>
+                <p class="code hover:cursor-pointer hover:bg-[#E3C950] hover:text-black">${generateSequence()}</p>
                 </div>
             `;
             document.getElementById("left-side").appendChild(row);
+        }
+        for (let i = 0; i < rows; i++) {
+            const row = document.createElement("div");
+            row.classList.add("flex");
+            row.id = `row-${i}`;
+            row.innerHTML = `
+                <div class="row-left mr-2">
+                    <p class='tracking-wide'>${generateRandonHexValue()}</p>
+                </div>
+                <div class="row-right ">
+                    <p class="code hover:cursor-pointer hover:bg-[#E3C950] hover:text-black">${generateSequence()}</p>
+                </div>
+            `;
+            document.getElementById("right-side").appendChild(row);
         }
     }, []);
     return (
@@ -55,8 +68,10 @@ function Game() {
                 <p>Password Required</p>
                 <p>Attempts Remaining {attempts}</p>
             </div>
-            <div id="left-side"></div>
-            <div id="right-side"></div>
+            <div id="code-container" className="flex justify-between max-w-[19rem] border-2 border-solid border-[#E3C950] p-2">
+                <div id="left-side" className=""></div>
+                <div id="right-side"></div>
+            </div>
         </div>
     );
 }
