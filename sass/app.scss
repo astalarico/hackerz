@@ -1,0 +1,15 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html{
+    font-family: 'VT323', monospace;
+    background: #010300;
+    color: #22ED27;
+    font-size: 24px;
+    body{
+        padding: 16px;
+        margin: 0;
+    }
+}
