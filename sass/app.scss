@@ -1,15 +1,43 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html{
-    font-family: 'VT323', monospace;
-    background: #010300;
-    color: #22ED27;
+$dark: #010300;
+$green: #22ed27;
+html {
+    font-family: "VT323", monospace;
+    background: $dark;
+    color: $green;
     font-size: 24px;
-    body{
+    user-select: none;
+    body {
         padding: 16px;
         margin: 0;
+        #terminal {
+            max-width: max-content;
+            #left-side {
+                margin-right: 24px;
+                .system-set {
+                    line-height: 1;
+                    .system-object {
+                        letter-spacing: 1.5px;
+                        text-transform: uppercase;
+                        &:hover {
+                            background: $green;
+                            color: $dark;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+            #feedback {
+                padding: 8px;
+                width: 300px;
+                border: 2px solid $green;
+                .feedback-message{
+                    line-height: .8;
+                }
+            }
+        }
     }
 }
